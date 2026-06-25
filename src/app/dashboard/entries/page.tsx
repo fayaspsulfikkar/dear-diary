@@ -64,7 +64,7 @@ export default async function EntriesPage() {
                     </div>
                     {/* Convert HTML content to plain text snippet roughly */}
                     <p className="text-muted-foreground text-sm line-clamp-3 mb-4 opacity-80">
-                      {entry.content.replace(/<[^>]*>?/gm, '')}
+                      {(entry.content || '').replace(/<[^>]*>?/gm, '')}
                     </p>
                     <div className="flex items-center gap-3 text-xs text-muted-foreground opacity-70">
                       <span>{entry.word_count || 0} words</span>
