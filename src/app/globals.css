@@ -2,22 +2,22 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #fafafa;
-  --foreground: #111111;
+  --background: #FCFAF8;
+  --foreground: #2A2522;
   
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
+  --muted: #F3EFEA;
+  --muted-foreground: #8C7C73;
   
-  --border: #e4e4e7;
+  --border: #E8DFD8;
   
-  --card: #ffffff;
-  --card-foreground: #111111;
+  --card: #FFFFFF;
+  --card-foreground: #2A2522;
   
-  --primary: #f472b6;
-  --primary-foreground: #ffffff;
+  --primary: #C58B86;
+  --primary-foreground: #FFFFFF;
 
-  --blush: #fdf2f8;
-  --blush-foreground: #9d174d;
+  --blush: #F8ECEB;
+  --blush-foreground: #8F4D49;
 }
 
 @theme inline {
@@ -35,29 +35,30 @@
   --color-blush-foreground: var(--blush-foreground);
   
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
+  --font-serif: var(--font-lora), var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-script: var(--font-great-vibes), cursive;
   
   /* Micro animations */
-  --animate-blob: blob 7s infinite;
+  --animate-blob: blob 15s infinite;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
+  --background: #141113;
+  --foreground: #F4EAE6;
   
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
+  --muted: #231C1F;
+  --muted-foreground: #9F8D93;
   
-  --border: #27272a;
+  --border: #33262B;
   
-  --card: #121214;
-  --card-foreground: #fafafa;
+  --card: #1A1518;
+  --card-foreground: #F4EAE6;
   
-  --primary: #ec4899;
-  --primary-foreground: #ffffff;
+  --primary: #E3B5A4;
+  --primary-foreground: #1A1518;
 
-  --blush: #4c1d95; /* Deep muted purple/pink for dark mode */
-  --blush-foreground: #fbcfe8;
+  --blush: #4A2B33;
+  --blush-foreground: #FAD1D8;
 }
 
 body {
@@ -82,14 +83,14 @@ body {
 /* Glassmorphism utilities */
 .glass {
   background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(197, 139, 134, 0.15); /* Soft rose tint */
+  box-shadow: 0 8px 32px rgba(42, 37, 34, 0.03);
 }
 
 .dark .glass {
-  background: rgba(18, 18, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(26, 21, 24, 0.5);
+  border: 1px solid rgba(227, 181, 164, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }

@@ -42,30 +42,30 @@ export default function EntriesTimeline({ initialEntries, userId }: { initialEnt
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <div className="flex items-center justify-between mb-16">
         <div>
-          <h1 className="text-4xl sm:text-5xl font-light tracking-tight text-foreground">Your Journal</h1>
-          <p className="text-muted-foreground mt-3 text-lg">All your memories in one place.</p>
+          <h1 className="text-5xl sm:text-6xl font-serif text-foreground drop-shadow-sm">Your Journal</h1>
+          <p className="text-muted-foreground mt-3 text-lg font-light tracking-wide">All your beautiful memories in one place.</p>
         </div>
         <Link 
           href="/dashboard/entries/new"
-          className="flex items-center gap-2 bg-primary hover:opacity-90 text-primary-foreground px-5 py-3 rounded-2xl transition-all shadow-sm font-medium active:scale-[0.98] duration-200"
+          className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3.5 rounded-full transition-all shadow-[0_4px_20px_-4px_rgba(197,139,134,0.4)] font-medium active:scale-[0.98] duration-300"
         >
-          <Plus className="w-4 h-4" />
-          <span className="hidden sm:inline">New Entry</span>
+          <Plus className="w-5 h-5" strokeWidth={1.5} />
+          <span className="hidden sm:inline">New Memory</span>
         </Link>
       </div>
 
       {!entries || entries.length === 0 ? (
-        <div className="text-center py-32 glass rounded-[2rem]">
-          <p className="text-xl font-light text-foreground">Your diary is empty.</p>
-          <p className="text-muted-foreground mt-3 mb-8 max-w-sm mx-auto">Start writing to see your memories appear here in a beautiful timeline.</p>
+        <div className="text-center py-32 glass rounded-[3rem]">
+          <p className="text-2xl font-serif text-foreground">Your diary is empty.</p>
+          <p className="text-muted-foreground mt-3 mb-10 max-w-sm mx-auto font-light">Start writing to see your memories appear here in a beautiful timeline.</p>
           <Link 
             href="/dashboard/entries/new"
-            className="inline-flex items-center gap-2 bg-blush text-blush-foreground px-8 py-4 rounded-2xl transition-all font-medium hover:bg-blush/80 active:scale-[0.98] duration-200"
+            className="inline-flex items-center gap-2 bg-blush text-blush-foreground px-10 py-4 rounded-full transition-all font-medium hover:bg-blush/80 active:scale-[0.98] duration-300 shadow-sm"
           >
-            Start Writing
+            Write your first entry
           </Link>
         </div>
       ) : (
@@ -77,28 +77,28 @@ export default function EntriesTimeline({ initialEntries, userId }: { initialEnt
               return (
                 <div key={entry.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                   {/* Timeline dot */}
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blush text-2xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_0_8px_var(--background)] ring-1 ring-black/5 dark:ring-white/5">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-full bg-background border-2 border-primary/20 text-2xl shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-[0_0_0_8px_var(--background)] transition-transform duration-500 group-hover:scale-110 group-hover:border-primary/50">
                     {mood.emoji}
                   </div>
                   
                   {/* Card */}
-                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-6 glass rounded-3xl transition-all duration-300 group-hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-white/5">
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-4rem)] p-8 glass rounded-[2.5rem] transition-all duration-500 group-hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(197,139,134,0.15)] dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
                     <Link href={`/dashboard/entries/${entry.id}`} className="block">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-normal text-xl text-foreground line-clamp-1 pr-4 flex items-center gap-2">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-2">
+                        <h3 className="font-serif text-2xl text-foreground line-clamp-1 pr-4 flex items-center gap-2">
                           {entry.title}
                           {entry.is_favorite && (
-                            <svg className="w-4 h-4 text-yellow-500 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg className="w-5 h-5 text-primary fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                           )}
                         </h3>
-                        <time className="text-xs font-medium text-muted-foreground bg-muted px-2.5 py-1 rounded-lg shrink-0">
+                        <time className="text-xs font-medium text-primary bg-primary/10 px-3 py-1.5 rounded-full shrink-0 tracking-wide uppercase">
                           {format(new Date(entry.created_at), 'MMM d, yyyy')}
                         </time>
                       </div>
-                      <p className="text-muted-foreground text-sm line-clamp-3 mb-4 opacity-80">
+                      <p className="text-muted-foreground text-sm line-clamp-3 mb-6 opacity-90 leading-relaxed font-light">
                         {(entry.content || '').replace(/<[^>]*>?/gm, '')}
                       </p>
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground opacity-70">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground/60 uppercase tracking-wider font-medium">
                         <span>{entry.word_count || 0} words</span>
                         <span>•</span>
                         <span>{entry.reading_time || 1} min read</span>

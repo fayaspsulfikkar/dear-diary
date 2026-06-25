@@ -27,20 +27,20 @@ function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-blush/30 to-background">
       {/* Decorative blobs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blush/80 dark:bg-blush/40 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/30 dark:bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-blush/60 dark:bg-blush/20 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-[35rem] h-[35rem] bg-primary/20 dark:bg-primary/10 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob animation-delay-2000"></div>
       
-      <div className="w-full max-w-md p-10 sm:p-12 glass rounded-[2.5rem] relative z-10 animate-in fade-in zoom-in duration-700">
-        <div className="absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-white/40 dark:ring-white/5 pointer-events-none"></div>
+      <div className="w-full max-w-md p-12 sm:p-14 glass rounded-[3rem] relative z-10 animate-in fade-in zoom-in duration-1000 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]">
+        <div className="absolute inset-0 rounded-[3rem] ring-1 ring-inset ring-primary/20 pointer-events-none"></div>
         
-        <div className="text-center mb-12 relative z-10">
-          <div className="mx-auto w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mb-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] dark:shadow-none ring-1 ring-black/5 dark:ring-white/10">
-            <Book className="w-8 h-8 text-blush-foreground" />
+        <div className="text-center mb-14 relative z-10">
+          <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-8 border border-primary/30 bg-white/30 dark:bg-black/30 backdrop-blur-sm">
+            <Book className="w-7 h-7 text-primary/80" strokeWidth={1.5} />
           </div>
-          <h1 className="text-3xl font-light tracking-tight text-foreground">Dear Diary</h1>
-          <p className="text-muted-foreground mt-4 text-sm font-medium">Your private, beautiful space.</p>
+          <h1 className="text-6xl text-primary font-script mb-2 drop-shadow-sm">Dear Diary</h1>
+          <p className="text-muted-foreground mt-4 text-xs tracking-[0.2em] uppercase font-serif">A Private Sanctuary</p>
           
           {errorMsg && (
             <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm rounded-xl border border-red-100 dark:border-red-900/50">

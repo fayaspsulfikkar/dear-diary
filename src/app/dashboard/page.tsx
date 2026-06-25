@@ -65,7 +65,7 @@ export default async function DashboardPage() {
   const greeting = hour < 12 ? 'Good Morning' : hour < 18 ? 'Good Afternoon' : 'Good Evening'
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       
       {/* Date Header */}
       <div className="mb-12">
@@ -79,15 +79,16 @@ export default async function DashboardPage() {
         </div>
         
         {/* Hero Card */}
-        <div className="glass rounded-[2rem] p-10 sm:p-14 relative overflow-hidden text-center flex flex-col items-center justify-center">
-          <h1 className="text-4xl sm:text-5xl font-light tracking-tight text-foreground">
-            {greeting}, <span className="font-normal">{user.user_metadata.full_name || 'Beautiful'}</span>
+        <div className="glass rounded-[3rem] p-10 sm:p-14 relative overflow-hidden text-center flex flex-col items-center justify-center transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_rgba(197,139,134,0.15)] dark:hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
+          <div className="absolute inset-0 rounded-[3rem] ring-1 ring-inset ring-primary/20 pointer-events-none"></div>
+          <h1 className="text-4xl sm:text-5xl font-serif text-foreground drop-shadow-sm tracking-wide">
+            {greeting}, <span className="font-script text-primary text-5xl sm:text-6xl">{user.user_metadata.full_name || 'Beautiful'}</span>
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-lg mx-auto">
             "What is one small thing that made you smile today?"
           </p>
           <div className="mt-10">
-            <a href="/dashboard/entries/new" className="inline-flex items-center justify-center rounded-2xl bg-primary px-8 py-4 text-sm font-medium text-primary-foreground shadow-sm hover:opacity-90 transition-all active:scale-[0.98] duration-200">
+            <a href="/dashboard/entries/new" className="inline-flex items-center justify-center rounded-full bg-primary px-10 py-4 text-sm font-medium text-primary-foreground shadow-[0_4px_20px_-4px_rgba(197,139,134,0.4)] hover:bg-primary/90 transition-all active:scale-[0.98] duration-300">
               Start Writing
             </a>
           </div>
@@ -96,8 +97,8 @@ export default async function DashboardPage() {
 
       {/* Grid of stats / recent */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-        <div className="glass rounded-3xl p-8 flex flex-col justify-between">
-          <h3 className="text-lg font-medium text-foreground mb-4">Recent Memories</h3>
+        <div className="glass rounded-[2.5rem] p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(197,139,134,0.15)] dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <h3 className="text-xl font-serif text-foreground mb-4">Recent Memories</h3>
           {recentEntry ? (
             <div>
               <p className="text-foreground font-medium truncate">{recentEntry.title}</p>
@@ -113,10 +114,10 @@ export default async function DashboardPage() {
           </div>
         </div>
         
-        <div className="glass rounded-3xl p-8 flex flex-col justify-between">
-          <h3 className="text-lg font-medium text-foreground">Writing Streak</h3>
-          <div className="flex items-end gap-2 mt-2">
-            <span className="text-5xl font-light tracking-tighter text-foreground">{streak}</span>
+        <div className="glass rounded-[2.5rem] p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(197,139,134,0.15)] dark:hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
+          <h3 className="text-xl font-serif text-foreground">Writing Streak</h3>
+          <div className="flex items-baseline gap-2 mt-2">
+            <span className="text-6xl font-script text-primary drop-shadow-sm">{streak}</span>
             <span className="text-muted-foreground text-sm mb-2">Days</span>
           </div>
         </div>

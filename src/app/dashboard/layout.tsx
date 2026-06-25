@@ -29,49 +29,49 @@ export default async function DashboardLayout({
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Sidebar */}
       <aside className="w-64 glass border-r-0 md:border-r border-black/5 dark:border-white/5 hidden md:flex flex-col z-10">
-        <div className="p-8">
-          <h1 className="text-xl font-light tracking-tight text-foreground flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-blush flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] dark:shadow-none ring-1 ring-black/5 dark:ring-white/10">
-              <Book className="w-4 h-4 text-blush-foreground" />
+        <div className="p-8 pb-4">
+          <h1 className="text-4xl text-primary font-script tracking-wide flex items-center gap-3 drop-shadow-sm">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center border border-primary/30 bg-white/50 dark:bg-black/20 backdrop-blur-sm">
+              <Book className="w-5 h-5 text-primary/80" strokeWidth={1.5} />
             </div>
             Dear Diary
           </h1>
         </div>
 
-        <nav className="flex-1 px-4 space-y-1.5 mt-2">
+        <nav className="flex-1 px-4 space-y-2 mt-4">
           <Link
             href="/dashboard"
-            className="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300"
+            className="group flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
           >
-            <LayoutDashboard className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors" />
+            <LayoutDashboard className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
             Overview
           </Link>
           <Link
             href="/dashboard/entries"
-            className="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300"
+            className="group flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
           >
-            <PenLine className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors" />
+            <PenLine className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
             Journal
           </Link>
           <Link
             href="/dashboard/calendar"
-            className="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300"
+            className="group flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
           >
-            <Calendar className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors" />
+            <Calendar className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
             Calendar
           </Link>
           <Link
             href="/dashboard/favorites"
-            className="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300"
+            className="group flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
           >
-            <Star className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors" />
+            <Star className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
             Favorites
           </Link>
           <Link
             href="/dashboard/settings"
-            className="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-xl text-muted-foreground hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300"
+            className="group flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-2xl text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
           >
-            <Settings className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:text-primary transition-colors" />
+            <Settings className="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity" strokeWidth={1.5} />
             Settings
           </Link>
         </nav>
