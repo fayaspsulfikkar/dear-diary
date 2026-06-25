@@ -19,7 +19,7 @@ export default async function EntryPage({ params }: { params: { id: string } }) 
     .from('entries')
     .select('*')
     .eq('id', params.id)
-    .eq('user_id', user?.id)
+    .eq('user_id', user!.id)
     .single()
 
   if (!entry) {
