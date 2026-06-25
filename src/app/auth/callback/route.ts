@@ -7,6 +7,8 @@ export async function GET(request: Request) {
   
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get('next') ?? '/dashboard'
+  const errorParam = searchParams.get('error')
+  const errorDescription = searchParams.get('error_description')
 
   let authError = null
 
@@ -29,6 +31,8 @@ export async function GET(request: Request) {
     } else {
       authError = error
     }
+  } else if (errorDescription || errorParam) {
+    authError = { message: errorDescription || errorParam }
   }
 
   // return the user to an error page with instructions
