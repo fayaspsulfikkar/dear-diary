@@ -9,7 +9,52 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
-  const today = new Date().toLocaleDateString('en-US', {
+  const { data: recentEntries } = await supabase
+    .from('entries')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(1)
+
+  const recentEntry = recentEntries?.[0]
+
+  const { data: allDatesData } = await supabase
+    .from('entries')
+    .select('date')
+    .eq('user_id', user.id)
+    .order('date', { ascending: false })
+
+  let streak = 0;
+  if (allDatesData && allDatesData.length > 0) {
+    const uniqueDates = [...new Set(allDatesData.map(d => d.date))];
+    const today = new Date();
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+    
+    let todayStr = formatDate(today);
+    let checkDate = new Date(today);
+    checkDate.setDate(checkDate.getDate() - 1);
+    let yesterdayStr = formatDate(checkDate);
+
+    if (uniqueDates.includes(todayStr)) {
+      streak = 1;
+      let curr = new Date(today);
+      curr.setDate(curr.getDate() - 1);
+      while (uniqueDates.includes(formatDate(curr))) {
+        streak++;
+        curr.setDate(curr.getDate() - 1);
+      }
+    } else if (uniqueDates.includes(yesterdayStr)) {
+      streak = 1;
+      let curr = new Date(today);
+      curr.setDate(curr.getDate() - 2);
+      while (uniqueDates.includes(formatDate(curr))) {
+        streak++;
+        curr.setDate(curr.getDate() - 1);
+      }
+    }
+  }
+
+  const todayDateStr = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric'
@@ -24,7 +69,7 @@ export default async function DashboardPage() {
       
       {/* Date Header */}
       <div className="mb-12">
-        <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">{today}</p>
+        <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">{todayDateStr}</p>
       </div>
 
       <div className="relative">
@@ -52,8 +97,17 @@ export default async function DashboardPage() {
       {/* Grid of stats / recent */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
         <div className="glass rounded-3xl p-8 flex flex-col justify-between">
-          <h3 className="text-lg font-medium text-foreground">Recent Memories</h3>
-          <p className="text-muted-foreground text-sm mt-2">You haven't written recently.</p>
+          <h3 className="text-lg font-medium text-foreground mb-4">Recent Memories</h3>
+          {recentEntry ? (
+            <div>
+              <p className="text-foreground font-medium truncate">{recentEntry.title}</p>
+              <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
+                {(recentEntry.content || '').replace(/<[^>]*>?/gm, '')}
+              </p>
+            </div>
+          ) : (
+            <p className="text-muted-foreground text-sm">You haven't written recently.</p>
+          )}
           <div className="mt-8">
             <a href="/dashboard/entries" className="text-primary text-sm font-medium hover:underline">View Journal &rarr;</a>
           </div>
@@ -62,7 +116,7 @@ export default async function DashboardPage() {
         <div className="glass rounded-3xl p-8 flex flex-col justify-between">
           <h3 className="text-lg font-medium text-foreground">Writing Streak</h3>
           <div className="flex items-end gap-2 mt-2">
-            <span className="text-5xl font-light tracking-tighter text-foreground">0</span>
+            <span className="text-5xl font-light tracking-tighter text-foreground">{streak}</span>
             <span className="text-muted-foreground text-sm mb-2">Days</span>
           </div>
         </div>

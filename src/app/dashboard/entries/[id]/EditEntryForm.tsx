@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 import Editor from '@/components/editor/Editor'
 import MoodSelector from '@/components/shared/MoodSelector'
 import { format } from 'date-fns'
+import { Star } from 'lucide-react'
 
 export default function EditEntryForm({ initialData }: { initialData: any }) {
   const router = useRouter()
@@ -15,6 +16,7 @@ export default function EditEntryForm({ initialData }: { initialData: any }) {
   const [content, setContent] = useState(initialData.content || '')
   const [text, setText] = useState('') // This gets updated by the editor on mount
   const [mood, setMood] = useState<string>(initialData.mood || 'happy')
+  const [isFavorite, setIsFavorite] = useState<boolean>(initialData.is_favorite || false)
   const [entryId, setEntryId] = useState<string>(initialData.id)
   
   const [isSaving, setIsSaving] = useState(false)
@@ -33,6 +35,7 @@ export default function EditEntryForm({ initialData }: { initialData: any }) {
       title: title || 'Untitled Entry',
       content,
       mood,
+      is_favorite: isFavorite,
       word_count: wordCount,
       reading_time: readingTime,
       updated_at: new Date().toISOString()
@@ -53,7 +56,7 @@ export default function EditEntryForm({ initialData }: { initialData: any }) {
   // Auto-save effect
   useEffect(() => {
     // Only auto-save if something has changed since mount to avoid unnecessary writes
-    if (title === initialData.title && content === initialData.content && mood === initialData.mood) {
+    if (title === initialData.title && content === initialData.content && mood === initialData.mood && isFavorite === (initialData.is_favorite || false)) {
       return
     }
 
@@ -62,7 +65,7 @@ export default function EditEntryForm({ initialData }: { initialData: any }) {
     }, 5000)
 
     return () => clearTimeout(timer)
-  }, [title, content, mood])
+  }, [title, content, mood, isFavorite])
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -76,6 +79,13 @@ export default function EditEntryForm({ initialData }: { initialData: any }) {
           ) : lastSaved ? (
             <span className="text-muted-foreground">Saved at {format(lastSaved, 'h:mm a')}</span>
           ) : null}
+          <button
+            onClick={() => setIsFavorite(!isFavorite)}
+            className={`p-2 rounded-lg transition-colors ${isFavorite ? 'text-yellow-500 bg-yellow-50 dark:bg-yellow-500/10' : 'text-muted-foreground hover:bg-black/5 dark:hover:bg-white/5'}`}
+            title="Favorite"
+          >
+            <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+          </button>
           <button 
             onClick={() => handleSave(true)}
             className="px-4 py-2 bg-pink-100 text-pink-700 hover:bg-pink-200 dark:bg-pink-900/30 dark:text-pink-300 dark:hover:bg-pink-900/50 rounded-lg transition-colors font-medium"
