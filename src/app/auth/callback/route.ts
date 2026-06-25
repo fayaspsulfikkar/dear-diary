@@ -8,6 +8,8 @@ export async function GET(request: Request) {
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get('next') ?? '/dashboard'
 
+  let authError = null
+
   if (code) {
     const supabase = await createClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
@@ -24,9 +26,11 @@ export async function GET(request: Request) {
       } else {
         return NextResponse.redirect(`${origin}${next}`)
       }
+    } else {
+      authError = error
     }
   }
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error?.message || 'Could not authenticate with Google')}`)
+  return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(authError?.message || 'Could not authenticate with Google')}`)
 }
