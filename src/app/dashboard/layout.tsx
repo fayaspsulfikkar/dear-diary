@@ -90,9 +90,32 @@ export default async function DashboardLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 relative overflow-y-auto overflow-x-hidden">
+      <main className="flex-1 relative overflow-y-auto overflow-x-hidden pb-20 md:pb-0">
         {children}
       </main>
+
+      {/* Mobile Navigation */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 glass border-t border-black/5 dark:border-white/5 z-50 px-6 py-3 flex items-center justify-between safe-area-bottom">
+        <Link href="/dashboard" className="flex flex-col items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+          <LayoutDashboard className="w-5 h-5" />
+          <span className="text-[10px] font-medium">Home</span>
+        </Link>
+        <Link href="/dashboard/entries" className="flex flex-col items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+          <PenLine className="w-5 h-5" />
+          <span className="text-[10px] font-medium">Journal</span>
+        </Link>
+        <Link href="/dashboard/entries/new" className="flex flex-col items-center justify-center w-12 h-12 -mt-6 bg-primary text-primary-foreground rounded-full shadow-lg shadow-primary/25 ring-4 ring-background hover:scale-105 transition-transform">
+          <PenLine className="w-5 h-5" />
+        </Link>
+        <Link href="/dashboard/calendar" className="flex flex-col items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+          <Calendar className="w-5 h-5" />
+          <span className="text-[10px] font-medium">Calendar</span>
+        </Link>
+        <Link href="/dashboard/settings" className="flex flex-col items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+          <Settings className="w-5 h-5" />
+          <span className="text-[10px] font-medium">Settings</span>
+        </Link>
+      </nav>
     </div>
   )
 }

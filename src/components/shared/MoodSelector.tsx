@@ -27,13 +27,15 @@ export default function MoodSelector({
   onChange: (mood: string) => void
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" role="group" aria-label="Select your mood">
       {MOODS.map((mood) => (
         <button
           key={mood.value}
           type="button"
           onClick={() => onChange(mood.value)}
           title={mood.label}
+          aria-label={mood.label}
+          aria-pressed={selectedMood === mood.value}
           className={cn(
             'flex items-center justify-center w-10 h-10 rounded-full text-xl transition-all duration-200 ring-1',
             selectedMood === mood.value

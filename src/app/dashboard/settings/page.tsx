@@ -3,15 +3,18 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Save } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 export default function SettingsPage() {
   const [profile, setProfile] = useState<any>(null)
   const [name, setName] = useState('')
   const [dailyGoal, setDailyGoal] = useState(300)
+  const [fontPref, setFontPref] = useState('sans')
   const [isLoading, setIsLoading] = useState(true)
   const [isSaving, setIsSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState('')
   const supabase = createClient()
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     async function fetchProfile() {
@@ -28,6 +31,7 @@ export default function SettingsPage() {
           setProfile(data)
           setName(data.name || '')
           setDailyGoal(data.daily_goal_words || 300)
+          setFontPref(data.font_preference || 'sans')
         }
       }
       setIsLoading(false)
@@ -50,6 +54,8 @@ export default function SettingsPage() {
       .update({
         name,
         daily_goal_words: dailyGoal,
+        font_preference: fontPref,
+        theme_preference: theme === 'system' ? 'system' : theme,
       })
       .eq('id', user.id)
 
@@ -107,6 +113,36 @@ export default function SettingsPage() {
                 placeholder="300"
               />
               <p className="text-xs text-muted-foreground mt-2">Setting a daily word goal helps you build a consistent journaling habit.</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <label htmlFor="theme" className="block text-sm font-medium text-foreground mb-2">Theme</label>
+                <select
+                  id="theme"
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  className="w-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none"
+                >
+                  <option value="system">System Default</option>
+                  <option value="light">Light Mode</option>
+                  <option value="dark">Dark Mode</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="font" className="block text-sm font-medium text-foreground mb-2">Typography</label>
+                <select
+                  id="font"
+                  value={fontPref}
+                  onChange={(e) => setFontPref(e.target.value)}
+                  className="w-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none"
+                >
+                  <option value="sans">Modern (Sans-serif)</option>
+                  <option value="serif">Elegant (Serif)</option>
+                </select>
+                <p className="text-xs text-muted-foreground mt-2">Requires a page refresh to take effect.</p>
+              </div>
             </div>
 
             <div className="pt-4 flex items-center justify-between border-t border-black/5 dark:border-white/5">
