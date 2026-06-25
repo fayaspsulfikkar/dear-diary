@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { format } from 'date-fns'
 
 export default async function DashboardPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   
   // Basic query for streaks/stats would go here
