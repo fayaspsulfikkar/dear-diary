@@ -29,16 +29,18 @@ function LoginContent() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden">
       {/* Decorative blobs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-pink-300 dark:bg-pink-900/40 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-300 dark:bg-purple-900/40 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blush/80 dark:bg-blush/40 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/30 dark:bg-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
       
-      <div className="w-full max-w-md p-8 bg-white/40 dark:bg-black/40 backdrop-blur-xl rounded-3xl shadow-2xl ring-1 ring-black/5 dark:ring-white/10 relative z-10 animate-in fade-in zoom-in duration-500">
-        <div className="text-center mb-10">
-          <div className="mx-auto w-16 h-16 bg-pink-100 dark:bg-pink-900/50 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-            <Book className="w-8 h-8 text-pink-500" />
+      <div className="w-full max-w-md p-10 sm:p-12 glass rounded-[2.5rem] relative z-10 animate-in fade-in zoom-in duration-700">
+        <div className="absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-white/40 dark:ring-white/5 pointer-events-none"></div>
+        
+        <div className="text-center mb-12 relative z-10">
+          <div className="mx-auto w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mb-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] dark:shadow-none ring-1 ring-black/5 dark:ring-white/10">
+            <Book className="w-8 h-8 text-blush-foreground" />
           </div>
-          <h1 className="text-3xl font-light tracking-tight text-foreground">Welcome to Dear Diary</h1>
-          <p className="text-muted-foreground mt-3 text-sm font-medium">Sign in to access your private journal.</p>
+          <h1 className="text-3xl font-light tracking-tight text-foreground">Dear Diary</h1>
+          <p className="text-muted-foreground mt-4 text-sm font-medium">Your private, beautiful space.</p>
           
           {errorMsg && (
             <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm rounded-xl border border-red-100 dark:border-red-900/50">
@@ -50,10 +52,10 @@ function LoginContent() {
         <button
           onClick={handleGoogleLogin}
           disabled={isLoading}
-          className="w-full flex items-center justify-center gap-3 bg-white dark:bg-black text-foreground font-medium py-3 px-4 rounded-xl ring-1 ring-black/5 dark:ring-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500/50 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full relative z-10 flex items-center justify-center gap-3 bg-white dark:bg-[#111111] text-foreground font-medium py-3.5 px-4 rounded-2xl ring-1 ring-black/5 dark:ring-white/10 hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? (
-            <span className="w-5 h-5 border-2 border-pink-500 border-t-transparent rounded-full animate-spin"></span>
+            <span className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
           ) : (
             <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
               <path d="M12.0003 4.75C13.7703 4.75 15.3553 5.36002 16.6053 6.54998L20.0303 3.125C17.9502 1.19 15.2353 0 12.0003 0C7.31028 0 3.25527 2.69 1.28027 6.60998L5.27028 9.70498C6.21525 6.86002 8.87028 4.75 12.0003 4.75Z" fill="#EA4335" />
