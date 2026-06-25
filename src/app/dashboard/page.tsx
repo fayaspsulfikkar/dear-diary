@@ -35,7 +35,7 @@ export default async function DashboardPage() {
               "What is one small thing that made you smile today?"
             </p>
             <div className="mt-8">
-              <a href="/entries/new" className="inline-flex items-center justify-center rounded-xl bg-pink-500 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-pink-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 transition-colors">
+              <a href="/dashboard/entries/new" className="inline-flex items-center justify-center rounded-xl bg-pink-500 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-pink-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 transition-colors">
                 Start Writing
               </a>
             </div>

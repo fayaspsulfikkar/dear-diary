@@ -45,28 +45,28 @@ export default async function DashboardLayout({
             Overview
           </Link>
           <Link
-            href="/entries"
+            href="/dashboard/entries"
             className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             <PenLine className="w-4 h-4 opacity-70" />
             Journal
           </Link>
           <Link
-            href="/calendar"
+            href="/dashboard/calendar"
             className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             <Calendar className="w-4 h-4 opacity-70" />
             Calendar
           </Link>
           <Link
-            href="/favorites"
+            href="/dashboard/favorites"
             className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             <Star className="w-4 h-4 opacity-70" />
             Favorites
           </Link>
           <Link
-            href="/settings"
+            href="/dashboard/settings"
             className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
           >
             <Settings className="w-4 h-4 opacity-70" />
