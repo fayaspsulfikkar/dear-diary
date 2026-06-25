@@ -1,12 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Book } from 'lucide-react'
 
-export default function LoginPage() {
+function LoginContent() {
   const [isLoading, setIsLoading] = useState(false)
   const supabase = createClient()
+  const searchParams = useSearchParams()
+  const errorMsg = searchParams.get('error')
 
   const handleGoogleLogin = async () => {
     setIsLoading(true)
@@ -36,6 +39,12 @@ export default function LoginPage() {
           </div>
           <h1 className="text-3xl font-light tracking-tight text-foreground">Welcome to Dear Diary</h1>
           <p className="text-muted-foreground mt-3 text-sm font-medium">Sign in to access your private journal.</p>
+          
+          {errorMsg && (
+            <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm rounded-xl border border-red-100 dark:border-red-900/50">
+              {errorMsg}
+            </div>
+          )}
         </div>
 
         <button
@@ -57,5 +66,13 @@ export default function LoginPage() {
         </button>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+      <LoginContent />
+    </Suspense>
   )
 }

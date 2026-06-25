@@ -28,5 +28,5 @@ export async function GET(request: Request) {
   }
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/login?error=Could not authenticate with Google`)
+  return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent(error?.message || 'Could not authenticate with Google')}`)
 }
